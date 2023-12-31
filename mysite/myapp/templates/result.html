@@ -2,6 +2,8 @@
 
 <html>
     <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title></title>
@@ -10,9 +12,55 @@
         <link rel="stylesheet" href="">
     </head>
     <body>
-     {% for link in data %}
-     {{link.name}}-->{{link.address}}</br>
-        {%endfor %}
+    
+   <div class="container">
+    <div class="row">
+        <div class="col-md-12 m-5">
+            <h1>link collector</h1>
+        </div>
+    </div>
+    <div class="row m-5">
+        <div class="col-md-4">
+            <form method="POST" action="/">
+                {% csrf_token %}
+                <input class="form-control" type="text" id="site" placeholder="enter site address" name="site">
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-primary" type="submit">Scrape</button>
+            </div>
+            </form>
+            <div clas="col-md-6">
+                <a class="btn btn-warning" href="/delete">delete</a>
+            </div>
+       
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Link</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for link in data %}
+                  <tr>
+                
+                    <td>{{link.id}}</td>
+                    <td>{{link.name}}</td>
+                    <td>{{link.address}}</td>
+                  </tr>
+                  {%endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+   </div>
+  
+       
         <script src="" async defer></script>
     </body>
 </html>
